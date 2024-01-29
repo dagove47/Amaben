@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    color: #F7F7F7;
+    min-height: 100vh;
+    width: 100%;
+    font-size: 16px;
+    background-color: #26010B;
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url("../assets/images/bckgrn2.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; */
+    font-family: "Varela Round", sans-serif;
+}
+
+/* 
+Loader
+*/
+.loader {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #141516;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 0.2rem solid #F28DCF;
+    border-color: #F28DCF #BF3F92 #F28DCF #BF3F92;
+    animation: lds-dual-ring 1.2s linear infinite;
+    box-shadow: 0 0 0.2rem #F28DCF, 0 0 0.2rem #F28DCF, 0 0 2rem #F28DCF, 0 0 0.8rem #F28DCF, 0 0 2.8rem #F28DCF, inset 0 0 1.3rem #F28DCF;
+}
+
+.loader p {
+    color: #F28DCF;
+    margin-top: 50px;
+    font-size: 2rem;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.title {
+    text-align: center;
+    margin: 2rem;
+}
+
+main {
+    background: blue;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+
+main section {
+    width: 500px;
+    height: 60vh;
+    background-color: red;
+    padding: 25px;
+}
