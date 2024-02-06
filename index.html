@@ -55,24 +55,72 @@
                     <div class="invalid-feedback">Introduzca un accesorio.</div>
                 </div>
                 <div class="col-md-6 quotation_form_div">
+                    <label for="amount">Cantidad</label>
+                    <input class="quotation_input form-control" id="amount" type="number" min="1" required>
+                    <div class="valid-feedback">Se ve bien!</div>
+                    <div class="invalid-feedback">Introduzca un número válido.</div>
+                </div>
+                <div class="col-md-6 quotation_form_div">
                     <label for="price">Precio</label>
                     <input class="quotation_input form-control" id="price" type="number" min="1" required>
                     <div class="valid-feedback">Se ve bien!</div>
                     <div class="invalid-feedback">Introduzca un número válido.</div>
                 </div>
                 <div class="col-md-6 quotation_form_div">
-                    <label for="amount">Cantidad</label>
-                    <input class="quotation_input form-control" id="amount" type="number" min="1" required>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="discountCheck">
+                        <label class="form-check-label" for="discountCheck">
+                            Agregar descuento
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 quotation_form_div">
+                    <label for="discount">Descuento %</label>
+                    <input class="quotation_input form-control" id="discount" type="number" min="1" max="100" required>
                     <div class="valid-feedback">Se ve bien!</div>
-                    <div class="invalid-feedback">Introduzca un número válido.</div>
+                    <div class="invalid-feedback">Introduzca un porcentaje válido.</div>
                 </div>
                 <div class="quotation_btn quotation_form_div">
-                    <button class="btn btn-primary fs-5 mt-3" id="submitBtn" type="submit">Agregar</button>
+                    <button class="btn fs-5 mt-3" id="submitBtn" type="submit">Agregar</button>
                 </div>
             </form>
         </section>
-        <section>
-            <button onclick="generatePDF()">Generate Quotation</button>
+        <section class="purchase_section" id="purchase_section">
+            <table class="purchase_table" id="purchase_table">
+                <tr>
+                    <th>Accesorio</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td class="test">Pulsera</td>
+                    <td class="test">10</td>
+                    <td class="test">3500</td>
+                    <td class="test">0</td>
+                    <td class="test">35000</td>
+                </tr>
+                <tr>
+                    <td class="test">Pulsera</td>
+                    <td class="test">10</td>
+                    <td class="test">3500</td>
+                    <td class="test">0</td>
+                    <td class="test">35000</td>
+                </tr>
+                <tr>
+                    <td class="test">Pulsera</td>
+                    <td class="test">10</td>
+                    <td class="test">3500</td>
+                    <td class="test">0</td>
+                    <td class="test">35000</td>
+                </tr>
+            </table>
+            <div class="purchase_buttons">
+                <button class="btn fs-5 mt-3 generatePDF_btn" id="generatePDF_btn" onclick="generatePDF()">Generar
+                    Cotización</button>
+                <button class="btn fs-5 mt-3 restartBtn" id="restartBtn" onclick="">Reiniciar</button>
+            </div>
         </section>
     </main>
 

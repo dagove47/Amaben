@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
+:root {
+    --primary-color: #BF264F;
+    --background-color: #141516;
+    --primary-btn: #4CB6C2;
+    --secondary-btn: #BF264F;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -15,7 +22,7 @@ body {
     min-height: 100vh;
     width: 100%;
     font-size: 16px;
-    background-color: #141516;
+    background-color: var(--background-color);
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
         url("https://images.unsplash.com/photo-1551970634-747846a548cb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-position: center;
@@ -37,7 +44,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: #141516;
+    background: var(--background-color);
 }
 
 .lds-dual-ring:after {
@@ -119,21 +126,82 @@ main section {
     padding: 0.375rem 0.75rem;
 }
 
-.quotation_btn .btn{
+.quotation_btn .btn {
     background: rgba(20, 21, 22, 0.7);
-    border: 1px solid #4CB6C2;
-    box-shadow: 0 0 0.7em #4CB6C2;
+    border: 1px solid var(--primary-btn);
+    box-shadow: 0 0 0.7em var(--primary-btn);
     border-radius: 15px;
     color: #fff;
 }
 
-.quotation_btn .btn:hover{
-    background: #4CB6C2;
+.quotation_btn .btn:hover {
+    background: var(--primary-btn);
 }
-.quotation_btn .btn:focus{
-    background: #4CB6C2;
+.quotation_btn .btn:focus {
+    background: var(--primary-btn);
 }
 
 /* 
-    Print
+    Purchase Info
 */
+
+.purchase_section {
+    display: flex;
+    flex-direction: column;
+}
+
+.purchase_table {
+    
+}
+
+.purchase_buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+.purchase_buttons .btn {
+    background: rgba(20, 21, 22, 0.7);
+    border-radius: 15px;
+    color: #fff;
+}
+
+.generatePDF_btn {
+    border: 1px solid var(--primary-btn);
+    box-shadow: 0 0 0.7em var(--primary-btn);
+}
+
+.generatePDF_btn:hover {
+    background: var(--primary-btn);
+}
+
+.generatePDF_btn:focus {
+    background: var(--primary-btn);
+}
+
+.restartBtn {
+    border: 1px solid var(--secondary-btn);
+    box-shadow: 0 0 0.7em var(--secondary-btn);
+}
+.restartBtn:hover {
+    background: var(--secondary-btn);
+}
+
+.restartBtn:focus {
+    background: var(--secondary-btn);
+}
+
+.purchase_table th{
+    text-align: center;
+    /* border-right: 1px solid #afafaf;
+    border-left: 1px solid #afafaf; */
+    border-bottom: 1px solid #afafaf;
+    padding: 5px 10px;
+}
+
+.purchase_table td{
+    text-align: center;
+    /* border-top: 1px solid #afafaf; */
+    padding: 5px 10px;
+}
