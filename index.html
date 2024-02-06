@@ -26,7 +26,7 @@
 <body>
     <div class="loader" id="loader">
         <div class="lds-dual-ring"></div>
-        <p>Loading...</p>
+        <p>Cargando...</p>
     </div>
 
     <header>
@@ -35,13 +35,37 @@
 
     <main>
         <section>
-            <div id="quotation">
-                
-                <button onclick="generatePDF()">Generate Quotation</button>
-             </div>
-             
+            <div class="cliente col-md-6 quotation_form_div" id="cliente">
+                <label for="cliente_nombre">Nombre</label>
+                <input class="quotation_input" id="cliente_nombre" type="text" minlength="2" placeholder="" required>
+            </div>
+            <form id="quotation_form" action="">
+                <div class="col-md-6 quotation_form_div" id="cliente">
+                    <label for="item">Accesorio</label>
+                    <select name="item" class="quotation_input" id="item" required>
+                        <option value="" selected disabled hidden>Selecciona una opción</option>
+                        <option value="Pulsera">Pulsera</option>
+                        <option value="Anillo">Anillo</option>
+                        <option value="Collar">Collar</option>
+                        <option value="Aretes">Aretes</option>
+                    </select>
+                </div>
+                <div class="col-md-6 quotation_form_div" id="cliente">
+                    <label for="price">Precio</label>
+                    <input class="quotation_input" id="price" type="number" placeholder="" required>
+                </div>
+                <div class="col-md-6 quotation_form_div" id="cliente">
+                    <label for="amount">Cantidad</label>
+                    <input class="quotation_input" id="amount" type="number" placeholder="" required>
+                </div>
+                <div class="quotation_btn quotation_form_div">
+                    <button class="btn btn-primary fs-5 mt-3" type="submit">Agregar</button>
+                </div>
+            </form>
         </section>
-        <section></section>
+        <section>
+            <button onclick="generatePDF()">Generate Quotation</button>
+        </section>
     </main>
 
     <footer></footer>

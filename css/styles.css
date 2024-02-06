@@ -15,17 +15,18 @@ body {
     min-height: 100vh;
     width: 100%;
     font-size: 16px;
-    background-color: #26010B;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url("../assets/images/bckgrn2.gif");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed; */
+    background-color: #141516;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+        url("https://images.unsplash.com/photo-1551970634-747846a548cb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: "Varela Round", sans-serif;
 }
 
 /* 
-Loader
+    Loader
 */
 .loader {
     width: 100%;
@@ -46,14 +47,19 @@ Loader
     height: 200px;
     margin: 8px;
     border-radius: 50%;
-    border: 0.2rem solid #F28DCF;
-    border-color: #F28DCF #BF3F92 #F28DCF #BF3F92;
+    border: 0.2rem solid #fff;
+    border-color: #fff #afafaf #fff #afafaf;
     animation: lds-dual-ring 1.2s linear infinite;
-    box-shadow: 0 0 0.2rem #F28DCF, 0 0 0.2rem #F28DCF, 0 0 2rem #F28DCF, 0 0 0.8rem #F28DCF, 0 0 2.8rem #F28DCF, inset 0 0 1.3rem #F28DCF;
+    box-shadow: 0 0 .2rem #fff,
+        0 0 .2rem #fff,
+        0 0 2rem #fff,
+        0 0 0.8rem #fff,
+        0 0 2.8rem #fff,
+        inset 0 0 1.3rem #fff;
 }
 
 .loader p {
-    color: #F28DCF;
+    color: #fff;
     margin-top: 50px;
     font-size: 2rem;
 }
@@ -75,7 +81,6 @@ Loader
 }
 
 main {
-    background: blue;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -85,7 +90,50 @@ main {
 
 main section {
     width: 500px;
-    height: 60vh;
-    background-color: red;
+    min-height: 500px;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 0.7em #BF264F;
 }
+
+/* 
+    Form
+*/
+
+.quotation_form_div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.quotation_input {
+    max-width: 600px;
+    background: rgba(20, 21, 22, 0.7);
+    border-color: #BF264F;
+    border-radius: 15px;
+    box-shadow: 0 0 0.7em #BF264F;
+    color: #fff;
+    margin: 0.5rem 0;
+    padding: 0.375rem 0.75rem;
+}
+
+.quotation_btn .btn{
+    background: rgba(20, 21, 22, 0.7);
+    border: 1px solid #4CB6C2;
+    box-shadow: 0 0 0.7em #4CB6C2;
+    border-radius: 15px;
+    color: #fff;
+}
+
+.quotation_btn .btn:hover{
+    background: #4CB6C2;
+}
+.quotation_btn .btn:focus{
+    background: #4CB6C2;
+}
+
+/* 
+    Print
+*/
