@@ -11,10 +11,10 @@
         title="Diamond icons created by Abdul-Aziz - Flaticon from www.flaticon.com" />
     <title>Proforma - Amaben</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css" />
     <!-- JS -->
@@ -35,31 +35,39 @@
 
     <main>
         <section>
-            <div class="cliente col-md-6 quotation_form_div" id="cliente">
-                <label for="cliente_nombre">Nombre</label>
-                <input class="quotation_input" id="cliente_nombre" type="text" minlength="2" placeholder="" required>
-            </div>
-            <form id="quotation_form" action="">
-                <div class="col-md-6 quotation_form_div" id="cliente">
+            <form class="needs-validation" id="quotation_form">
+                <div class="cliente col-md-6 quotation_form_div">
+                    <label for="client">Nombre</label>
+                    <input class="quotation_input form-control" id="client" type="text" minlength="2" required>
+                    <div class="valid-feedback">Se ve bien!</div>
+                    <div class="invalid-feedback">Introduzca un nombre válido.</div>
+                </div>
+                <div class="col-md-6 quotation_form_div">
                     <label for="item">Accesorio</label>
-                    <select name="item" class="quotation_input" id="item" required>
+                    <select name="item" class="quotation_input form-control" id="item" required>
                         <option value="" selected disabled hidden>Selecciona una opción</option>
                         <option value="Pulsera">Pulsera</option>
                         <option value="Anillo">Anillo</option>
                         <option value="Collar">Collar</option>
                         <option value="Aretes">Aretes</option>
                     </select>
+                    <div class="valid-feedback">Se ve bien!</div>
+                    <div class="invalid-feedback">Introduzca un accesorio.</div>
                 </div>
-                <div class="col-md-6 quotation_form_div" id="cliente">
+                <div class="col-md-6 quotation_form_div">
                     <label for="price">Precio</label>
-                    <input class="quotation_input" id="price" type="number" placeholder="" required>
+                    <input class="quotation_input form-control" id="price" type="number" min="1" required>
+                    <div class="valid-feedback">Se ve bien!</div>
+                    <div class="invalid-feedback">Introduzca un número válido.</div>
                 </div>
-                <div class="col-md-6 quotation_form_div" id="cliente">
+                <div class="col-md-6 quotation_form_div">
                     <label for="amount">Cantidad</label>
-                    <input class="quotation_input" id="amount" type="number" placeholder="" required>
+                    <input class="quotation_input form-control" id="amount" type="number" min="1" required>
+                    <div class="valid-feedback">Se ve bien!</div>
+                    <div class="invalid-feedback">Introduzca un número válido.</div>
                 </div>
                 <div class="quotation_btn quotation_form_div">
-                    <button class="btn btn-primary fs-5 mt-3" type="submit">Agregar</button>
+                    <button class="btn btn-primary fs-5 mt-3" id="submitBtn" type="submit">Agregar</button>
                 </div>
             </form>
         </section>
@@ -69,6 +77,11 @@
     </main>
 
     <footer></footer>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
