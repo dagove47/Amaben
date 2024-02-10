@@ -30,27 +30,40 @@
     </div>
 
     <header>
-        <h1 class="title">Proforma</h1>
+        <h1 class="title neon-text">Proforma</h1>
     </header>
 
     <main>
         <section>
             <form class="needs-validation" id="quotation_form">
                 <div class="cliente col-md-6 quotation_form_div">
-                    <label for="client">Nombre</label>
+                    <label for="client">Cliente</label>
                     <input class="quotation_input form-control" id="client" type="text" minlength="2" required>
                     <div class="valid-feedback">Se ve bien!</div>
                     <div class="invalid-feedback">Introduzca un nombre válido.</div>
                 </div>
                 <div class="col-md-6 quotation_form_div">
-                    <label for="item">Accesorio</label>
-                    <select name="item" class="quotation_input form-control" id="item" required>
+
+                    <div class="d-flex flex-row">
+                        <label for="item">Accesorio</label>
+                        <div class="ms-auto">
+                            <input class="form-check-input" type="checkbox" value="" id="newItemCheck">
+                            <label class="form-check-label" for="newItemCheck">
+                                Otro accesorio
+                            </label>
+                        </div>
+                    </div>
+
+                    <input class="quotation_input form-control none" disabled id="item" type="text" minlength="2" required data-input-item>
+                    <select name="item" class="quotation_input form-control" id="item" required data-select-item>
                         <option value="" selected disabled hidden>Selecciona una opción</option>
                         <option value="Pulsera">Pulsera</option>
                         <option value="Anillo">Anillo</option>
                         <option value="Collar">Collar</option>
                         <option value="Aretes">Aretes</option>
                     </select>
+
+
                     <div class="valid-feedback">Se ve bien!</div>
                     <div class="invalid-feedback">Introduzca un accesorio.</div>
                 </div>
@@ -67,18 +80,18 @@
                     <div class="invalid-feedback">Introduzca un número válido.</div>
                 </div>
                 <div class="col-md-6 quotation_form_div">
-                    <div class="form-check">
+                    <div>
                         <input class="form-check-input" type="checkbox" value="" id="discountCheck">
                         <label class="form-check-label" for="discountCheck">
                             Agregar descuento
                         </label>
                     </div>
-                </div>
-                <div class="col-md-6 quotation_form_div">
-                    <label for="discount">Descuento %</label>
-                    <input class="quotation_input form-control" id="discount" type="number" min="1" max="100" required>
-                    <div class="valid-feedback">Se ve bien!</div>
-                    <div class="invalid-feedback">Introduzca un porcentaje válido.</div>
+                    <div id="discount_div" class="mt-3 none">
+                        <label for="discount">Descuento %</label>
+                        <input class="quotation_input form-control" disabled id="discount" type="number" min="1" max="100" required>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Introduzca un porcentaje válido.</div>
+                    </div>
                 </div>
                 <div class="quotation_btn quotation_form_div">
                     <button class="btn fs-5 mt-3" id="submitBtn" type="submit">Agregar</button>
@@ -93,33 +106,14 @@
                     <th>Precio</th>
                     <th>Descuento</th>
                     <th>Subtotal</th>
-                </tr>
-                <tr>
-                    <td class="test">Pulsera</td>
-                    <td class="test">10</td>
-                    <td class="test">3500</td>
-                    <td class="test">0</td>
-                    <td class="test">35000</td>
-                </tr>
-                <tr>
-                    <td class="test">Pulsera</td>
-                    <td class="test">10</td>
-                    <td class="test">3500</td>
-                    <td class="test">0</td>
-                    <td class="test">35000</td>
-                </tr>
-                <tr>
-                    <td class="test">Pulsera</td>
-                    <td class="test">10</td>
-                    <td class="test">3500</td>
-                    <td class="test">0</td>
-                    <td class="test">35000</td>
+                    <th></th>
                 </tr>
             </table>
             <div class="purchase_buttons">
                 <button class="btn fs-5 mt-3 generatePDF_btn" id="generatePDF_btn" onclick="generatePDF()">Generar
                     Cotización</button>
-                <button class="btn fs-5 mt-3 restartBtn" id="restartBtn" onclick="">Reiniciar</button>
+                <button class="btn fs-5 mt-3 restartBtn" id="restartBtn"
+                    onclick="restartFormAndDeleteRows()">Reiniciar</button>
             </div>
         </section>
     </main>
