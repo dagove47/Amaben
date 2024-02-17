@@ -20,7 +20,9 @@
     <!-- JS -->
     <script src="js/main.js" defer></script>
     <!-- jsPDF library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
 </head>
 
 <body>
@@ -43,9 +45,8 @@
                     <div class="invalid-feedback">Introduzca un nombre válido.</div>
                 </div>
                 <div class="col-md-6 quotation_form_div">
-
                     <div class="d-flex flex-row">
-                        <label for="item">Accesorio</label>
+                        <label id="itemLabel">Accesorio</label>
                         <div class="ms-auto">
                             <input class="form-check-input" type="checkbox" value="" id="newItemCheck">
                             <label class="form-check-label" for="newItemCheck">
@@ -53,32 +54,62 @@
                             </label>
                         </div>
                     </div>
-
-                    <input class="quotation_input form-control none" disabled id="item" type="text" minlength="2" required data-input-item>
-                    <select name="item" class="quotation_input form-control" id="item" required data-select-item>
+                    <input class="quotation_input form-control none" disabled id="itemInput" type="text" minlength="2" required data-input-item aria-labelledby="itemLabel">
+                    <select name="itemSelect" class="quotation_input form-control" id="itemSelect" required data-select-item aria-labelledby="itemLabel">
                         <option value="" selected disabled hidden>Selecciona una opción</option>
                         <option value="Pulsera">Pulsera</option>
                         <option value="Anillo">Anillo</option>
                         <option value="Collar">Collar</option>
                         <option value="Aretes">Aretes</option>
                     </select>
-
-
                     <div class="valid-feedback">Se ve bien!</div>
                     <div class="invalid-feedback">Introduzca un accesorio.</div>
                 </div>
+
                 <div class="col-md-6 quotation_form_div">
-                    <label for="amount">Cantidad</label>
-                    <input class="quotation_input form-control" id="amount" type="number" min="1" required>
+                    <div class="d-flex flex-row">
+                        <label id="amountLabel">Cantidad</label>
+                        <div class="ms-auto">
+                            <input class="form-check-input" type="checkbox" value="" id="newAmountCheck">
+                            <label class="form-check-label" for="newAmountCheck">
+                                Otra cantidad
+                            </label>
+                        </div>
+                    </div>
+                    <input class="quotation_input form-control none" disabled id="amountInput" type="number" min="1" required data-input-amount aria-labelledby="amountLabel">
+                    <select name="amountSelect" class="quotation_input form-control" id="amountSelect" required data-select-amount aria-labelledby="amountLabel">
+                        <option value="" selected disabled hidden>Selecciona una opción</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                     <div class="valid-feedback">Se ve bien!</div>
                     <div class="invalid-feedback">Introduzca un número válido.</div>
                 </div>
+
                 <div class="col-md-6 quotation_form_div">
-                    <label for="price">Precio</label>
-                    <input class="quotation_input form-control" id="price" type="number" min="1" required>
+                    <div class="d-flex flex-row">
+                        <label id="priceLabel">Precio</label>
+                        <div class="ms-auto">
+                            <input class="form-check-input" type="checkbox" value="" id="newPriceCheck">
+                            <label class="form-check-label" for="newPriceCheck">
+                                Otro precio
+                            </label>
+                        </div>
+                    </div>
+                    <input class="quotation_input form-control none" disabled id="priceInput" type="number" min="1" required data-input-price aria-labelledby="priceLabel">
+                    <select name="priceSelect" class="quotation_input form-control" id="priceSelect" required data-select-price aria-labelledby="priceLabel">
+                        <option value="" selected disabled hidden>Selecciona una opción</option>
+                        <option value="1000">1000</option>
+                        <option value="1500">1500</option>
+                        <option value="2000">2000</option>
+                        <option value="2500">2500</option>
+                    </select>
                     <div class="valid-feedback">Se ve bien!</div>
                     <div class="invalid-feedback">Introduzca un número válido.</div>
                 </div>
+
                 <div class="col-md-6 quotation_form_div">
                     <div>
                         <input class="form-check-input" type="checkbox" value="" id="discountCheck">
@@ -100,14 +131,17 @@
         </section>
         <section class="purchase_section" id="purchase_section">
             <table class="purchase_table" id="purchase_table">
-                <tr>
-                    <th>Accesorio</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Descuento</th>
-                    <th>Subtotal</th>
-                    <th></th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Accesorio</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Descuento</th>
+                        <th>Subtotal</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody class="purchase_table_body" id="purchase_table_body"></tbody>
             </table>
             <div class="purchase_buttons">
                 <button class="btn fs-5 mt-3 generatePDF_btn" id="generatePDF_btn" onclick="generatePDF()">Generar

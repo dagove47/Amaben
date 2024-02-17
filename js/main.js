@@ -13,12 +13,21 @@ window.addEventListener('load', () => {
 
 const quotation_form = document.getElementById('quotation_form');
 const submitBtn = document.getElementById('submitBtn');
+
 const client = document.getElementById('client');
+
 const inputItem = quotation_form.querySelector('[data-input-item]');
 const selectItem = quotation_form.querySelector('[data-select-item]');
 const newItemCheck = document.getElementById('newItemCheck');
-const amount = document.getElementById('amount');
-const price = document.getElementById('price');
+
+const inputAmount = quotation_form.querySelector('[data-input-amount]');
+const selectAmount = quotation_form.querySelector('[data-select-amount]');
+const newAmountCheck = document.getElementById('newAmountCheck');
+
+const inputPrice = quotation_form.querySelector('[data-input-price]');
+const selectPrice = quotation_form.querySelector('[data-select-price]');
+const newPriceCheck = document.getElementById('newPriceCheck');
+
 const discountDiv = document.getElementById('discount_div');
 const discount = document.getElementById('discount');
 const discountCheck = document.getElementById('discountCheck');
@@ -34,8 +43,8 @@ submitBtn.addEventListener('click', (e) => {
     } else {
         const purchaseDetails = {
             item: selectItem.value || inputItem.value,
-            amount: parseFloat(amount.value),
-            price: parseFloat(price.value),
+            amount: parseFloat(selectAmount.value || inputAmount.value),
+            price: parseFloat(selectPrice.value || inputPrice.value),
             discount: parseFloat(discount.value) || 0,
             id: tokenId(),
         };
@@ -60,7 +69,6 @@ class Purchase {
 function addPurchase({ item, amount, price, discount, id }) {
     const newPurchase = new Purchase(item, price, amount, discount, id);
     allPurchases.push(newPurchase);
-    console.log(allPurchases);
 }
 
 function restartAllForm(allInputs) {
@@ -75,32 +83,34 @@ function restartAllForm(allInputs) {
         }
     });
     quotation_form.removeAttribute('class', 'was-validated');
-    removeInputItem();
+    toggleOption(selectItem, inputItem);
+    toggleOption(selectAmount, inputAmount);
+    toggleOption(selectPrice, inputPrice);
     removeInputDiscount();
 }
 
 newItemCheck.addEventListener('change', function () {
-    this.checked ? removeSelectItem() : removeInputItem();
+    this.checked ? toggleOption(inputItem, selectItem) : toggleOption(selectItem, inputItem);
+});
+
+newAmountCheck.addEventListener('change', function () {
+    this.checked ? toggleOption(inputAmount, selectAmount) : toggleOption(selectAmount, inputAmount);
+});
+
+newPriceCheck.addEventListener('change', function () {
+    this.checked ? toggleOption(inputPrice, selectPrice) : toggleOption(selectPrice, inputPrice);
 });
 
 discountCheck.addEventListener('change', function () {
     this.checked ? addInputDiscount() : removeInputDiscount();
 })
 
-function removeInputItem() {
-    inputItem.value = '';
-    inputItem.classList.add('none');
-    inputItem.disabled = true;
-    selectItem.classList.remove('none');
-    selectItem.disabled = false;
-}
-
-function removeSelectItem() {
-    selectItem.value = '';
-    selectItem.classList.add('none');
-    selectItem.disabled = true;
-    inputItem.classList.remove('none');
-    inputItem.disabled = false;
+function toggleOption(insertOpt, removeOpt) {
+    removeOpt.value = '';
+    removeOpt.classList.add('none');
+    removeOpt.disabled = true;
+    insertOpt.classList.remove('none');
+    insertOpt.disabled = false;
 }
 
 function addInputDiscount() {
@@ -118,15 +128,9 @@ function removeInputDiscount() {
     Purchase Receipt
 */
 
-const purchaseTable = document.getElementById('purchase_table');
+const purchaseTableBody = document.getElementById('purchase_table_body');
 
 function purchaseReceipt({ item, amount, price, discount, id }) {
-
-    // Check if purchaseTable exists
-    if (!purchaseTable) {
-        console.error('Error: purchaseTable element not found');
-        return; // Prevent further execution if table is missing
-    }
 
     const totalDiscount = addDiscount(amount, price, discount);
     const subTotal = (amount * price) - totalDiscount;
@@ -163,11 +167,11 @@ function purchaseReceipt({ item, amount, price, discount, id }) {
 
     iconCell.addEventListener('click', () => {
         if (confirm('¿Confirma que desea eliminar esta fila?')) {
-            purchaseTable.removeChild(newRow); // Remove the row from the table
+            purchaseTableBody.removeChild(newRow); // Remove the row from the table
         }
     });
 
-    purchaseTable.appendChild(newRow);
+    purchaseTableBody.appendChild(newRow);
 }
 
 function addDiscount(amount, price, discount) {
@@ -177,24 +181,10 @@ function addDiscount(amount, price, discount) {
 }
 
 function deleteAllRows() {
-    const purchaseTable = document.getElementById('purchase_table');
-  if (!purchaseTable) {
-    console.error('Error: purchaseTable element not found');
-    return;
-  }
-
-  if (confirm('Are you sure you want to delete all rows? This cannot be undone.')) {
-    console.log('test', purchaseTable.rows);
-    while (purchaseTable.rows.length > 0) {
-      const firstRow = purchaseTable.rows[0];
-      if (purchaseTable.contains(firstRow)) { // Ensure the row is still a child
-        purchaseTable.removeChild(firstRow);
-      } else {
-        console.warn('Row already removed or invalid structure. Skipping.');
-      }
+    if (confirm('¿Está seguro de que desea eliminar todas las filas? Esto no se puede deshacer.')) {
+        purchaseTableBody.textContent = '';
     }
-  }
-  }
+}
 
 function restartFormAndDeleteRows() {
     restartAllForm(true);
@@ -206,12 +196,96 @@ function restartFormAndDeleteRows() {
     PDF
 */
 function generatePDF() {
+    // Importa jsPDF desde el objeto window
     const { jsPDF } = window.jspdf;
+
+    // Crea un nuevo documento PDF
     const doc = new jsPDF();
-    doc.text(10, 20, "Hello World!");
-    doc.text(10, 30, "this is a test");
-    doc.save("new File.pdf");
+
+    // Establece la configuración para centrar el texto con tamaño de fuente más pequeño
+    const textOptions = { align: "center" };
+    doc.setFontSize(12);
+
+    const docDate = "Fecha: 16 / 02 / 2023";
+    const textWidth = doc.getTextWidth(docDate);
+    const x = doc.internal.pageSize.width - textWidth - 10; // Ajusta el margen según tus necesidades
+
+    doc.text(docDate, x, 10, textOptions);
+
+    // Añade una imagen (asegúrate de tener la URL correcta de la imagen)
+    const imageUrl = '../images/Amaben_Logo.jpg'; // Reemplaza '../images/Amaben_Logo.jpg' con la URL de tu imagen
+    doc.addImage(imageUrl, 'JPEG', 80, 20, 50, 30); // Ajusta las coordenadas y dimensiones según tus necesidades
+
+    // Agrega el contenido al PDF con tamaños de fuente más pequeños
+    doc.text("PROFORMA", 105, 70, textOptions);
+
+    // Detalles de la tabla
+    const tableHeaders = ["Productos", "Precios", "Cantidad", "Descuento", "Subtotal"];
+    const tableData = [
+        ["Aretes", "10000", "5", "1000", "9000"],
+        ["Aretes", "10000", "5", "1000", "9000"],
+        ["Aretes", "10000", "5", "1000", "9000"],
+        ["Aretes", "10000", "5", "1000", "9000"],
+        ["Aretes", "10000", "5", "1000", "9000"],
+        ["Aretes", "10000", "5", "1000", "9000"],
+    ];
+
+    // Configuración de la tabla
+    const tableProps = { startY: 80, margin: { horizontal: 15 } };
+
+    // Agrega la tabla al PDF
+    doc.autoTable({
+        head: [tableHeaders],
+        body: tableData,
+        ...tableProps
+    });
+
+    // Otros elementos centrados con tamaños de fuente más pequeños
+    doc.text("Total: 9000", 105, doc.autoTable.previous.finalY + 10, textOptions);
+    doc.text("GRACIAS!", 105, doc.autoTable.previous.finalY + 40, textOptions);
+    doc.text("Por acompañarnos en el LIVE AMABEN!", 105, doc.autoTable.previous.finalY + 50, textOptions);
+    doc.text("Te esperamos todos los martes y viernes", 105, doc.autoTable.previous.finalY + 60, textOptions);
+    doc.text("de 1:00pm a 9:00pm", 105, doc.autoTable.previous.finalY + 70, textOptions);
+
+    // Número de teléfono con icono de WhatsApp
+    const numeroTelefono = "8595-7676";
+    const iconoWhatsApp = "../images/whatsapp.png";
+    const anchoIconoWhatsApp = 5;
+
+    doc.addImage(iconoWhatsApp, 'PNG', 92, doc.autoTable.previous.finalY + 80 - 4, anchoIconoWhatsApp, anchoIconoWhatsApp);
+    doc.text(numeroTelefono, 99 + anchoIconoWhatsApp + 5, doc.autoTable.previous.finalY + 80, textOptions);
+
+    const redesSociales = [
+        { nombre: "../images/tiktok.png", usuario: "amaben joyeria" },
+        { nombre: "../images/facebook.png", usuario: "famabencr" },
+        { nombre: "../images/instagram.png", usuario: "amabenjoyeriacostarica" },
+    ];
+
+    const espacioEntreRedes = 5; // Ajusta según sea necesario
+
+    // Calcular el ancho total de las imágenes y el texto
+    const anchoTotal = redesSociales.reduce((total, red) => total + 16 + doc.getTextWidth(red.usuario) + espacioEntreRedes, 0);
+
+    // Calcular la posición inicial para centrar las redes sociales
+    let xPosition = (doc.internal.pageSize.width - anchoTotal) / 2;
+    let yPosition = doc.autoTable.previous.finalY + 100;
+
+    // Iterar sobre las redes sociales y agregar imágenes y texto
+    redesSociales.forEach(red => {
+        // Agregar imagen
+        doc.addImage(red.nombre, 'PNG', xPosition, yPosition, 10, 10);
+
+        // Agregar texto al lado de la imagen
+        doc.text(`${red.usuario}`, xPosition + 13, yPosition + 8);
+
+        // Incrementar la posición para la próxima iteración
+        xPosition += 20 + doc.getTextWidth(red.usuario) + espacioEntreRedes;
+    });
+
+    // Guardar el PDF
+    doc.save("documento.pdf");
 }
+
 
 /* 
     Token
