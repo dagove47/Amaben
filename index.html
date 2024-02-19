@@ -36,118 +36,175 @@
     </header>
 
     <main>
-        <section>
-            <form class="needs-validation" id="quotation_form">
-                <div class="cliente col-md-6 quotation_form_div">
-                    <label for="client">Cliente</label>
-                    <input class="quotation_input form-control" id="client" type="text" minlength="2" required>
-                    <div class="valid-feedback">Se ve bien!</div>
-                    <div class="invalid-feedback">Introduzca un nombre válido.</div>
-                </div>
-                <div class="col-md-6 quotation_form_div">
-                    <div class="d-flex flex-row">
-                        <label id="itemLabel">Accesorio</label>
-                        <div class="ms-auto">
-                            <input class="form-check-input" type="checkbox" value="" id="newItemCheck">
-                            <label class="form-check-label" for="newItemCheck">
-                                Otro accesorio
-                            </label>
-                        </div>
-                    </div>
-                    <input class="quotation_input form-control none" disabled id="itemInput" type="text" minlength="2" required data-input-item aria-labelledby="itemLabel">
-                    <select name="itemSelect" class="quotation_input form-control" id="itemSelect" required data-select-item aria-labelledby="itemLabel">
-                        <option value="" selected disabled hidden>Selecciona una opción</option>
-                        <option value="Pulsera">Pulsera</option>
-                        <option value="Anillo">Anillo</option>
-                        <option value="Collar">Collar</option>
-                        <option value="Aretes">Aretes</option>
-                    </select>
-                    <div class="valid-feedback">Se ve bien!</div>
-                    <div class="invalid-feedback">Introduzca un accesorio.</div>
-                </div>
-
-                <div class="col-md-6 quotation_form_div">
-                    <div class="d-flex flex-row">
-                        <label id="amountLabel">Cantidad</label>
-                        <div class="ms-auto">
-                            <input class="form-check-input" type="checkbox" value="" id="newAmountCheck">
-                            <label class="form-check-label" for="newAmountCheck">
-                                Otra cantidad
-                            </label>
-                        </div>
-                    </div>
-                    <input class="quotation_input form-control none" disabled id="amountInput" type="number" min="1" required data-input-amount aria-labelledby="amountLabel">
-                    <select name="amountSelect" class="quotation_input form-control" id="amountSelect" required data-select-amount aria-labelledby="amountLabel">
-                        <option value="" selected disabled hidden>Selecciona una opción</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                    <div class="valid-feedback">Se ve bien!</div>
-                    <div class="invalid-feedback">Introduzca un número válido.</div>
-                </div>
-
-                <div class="col-md-6 quotation_form_div">
-                    <div class="d-flex flex-row">
-                        <label id="priceLabel">Precio</label>
-                        <div class="ms-auto">
-                            <input class="form-check-input" type="checkbox" value="" id="newPriceCheck">
-                            <label class="form-check-label" for="newPriceCheck">
-                                Otro precio
-                            </label>
-                        </div>
-                    </div>
-                    <input class="quotation_input form-control none" disabled id="priceInput" type="number" min="1" required data-input-price aria-labelledby="priceLabel">
-                    <select name="priceSelect" class="quotation_input form-control" id="priceSelect" required data-select-price aria-labelledby="priceLabel">
-                        <option value="" selected disabled hidden>Selecciona una opción</option>
-                        <option value="1000">1000</option>
-                        <option value="1500">1500</option>
-                        <option value="2000">2000</option>
-                        <option value="2500">2500</option>
-                    </select>
-                    <div class="valid-feedback">Se ve bien!</div>
-                    <div class="invalid-feedback">Introduzca un número válido.</div>
-                </div>
-
-                <div class="col-md-6 quotation_form_div">
-                    <div>
-                        <input class="form-check-input" type="checkbox" value="" id="discountCheck">
-                        <label class="form-check-label" for="discountCheck">
-                            Agregar descuento
-                        </label>
-                    </div>
-                    <div id="discount_div" class="mt-3 none">
-                        <label for="discount">Descuento %</label>
-                        <input class="quotation_input form-control" disabled id="discount" type="number" min="1" max="100" required>
+        <section class=" container quotation-section">
+            <div class="info-container">
+                <form class="needs-validation" id="generatePDF_form">
+                    <div class="col-md-6 info_form_div">
+                        <label for="date">Fecha</label>
+                        <input class="info_input form-control" id="date" type="date" required>
                         <div class="valid-feedback">Se ve bien!</div>
-                        <div class="invalid-feedback">Introduzca un porcentaje válido.</div>
+                        <div class="invalid-feedback">Introduzca un nombre válido.</div>
                     </div>
+                    <div class="col-md-6 info_form_div">
+                        <label for="employee">Empleado</label>
+                        <select name="employee" class="info_input form-control" id="employee" required data-select-item>
+                            <option value="" selected disabled hidden>Seleccionar empleado</option>
+                            <option value="Arthur">Arthur</option>
+                            <option value="Saray">Saray</option>
+                            <option value="David">David</option>
+                        </select>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Introduzca un nombre válido.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="quotation-container">
+                <form class="needs-validation" id="quotation_form">
+                    <div class="col-md-6 quotation_form_div">
+                        <label for="client">Cliente</label>
+                        <input class="quotation_input form-control" id="client" type="text" minlength="2" required>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Introduzca un nombre válido.</div>
+                    </div>
+                    <div class="col-md-6 quotation_form_div">
+                        <label for="phoneNum">Teléfono</label>
+                        <input class="quotation_input form-control" id="phoneNum" type="tel" pattern="[0-9]{8}"
+                            required>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Ingrese un número de teléfono válido de 8 dígitos.</div>
+                    </div>
+                    <div class="col-md-6 quotation_form_div">
+                        <div class="d-flex flex-row">
+                            <label id="itemLabel">Accesorio</label>
+                            <div class="ms-auto">
+                                <input class="form-check-input" type="checkbox" value="" id="newItemCheck">
+                                <label class="form-check-label" for="newItemCheck">
+                                    Otro accesorio
+                                </label>
+                            </div>
+                        </div>
+                        <input class="quotation_input form-control none" disabled id="itemInput" type="text"
+                            minlength="2" required data-input-item aria-labelledby="itemLabel">
+                        <select name="itemSelect" class="quotation_input form-control" id="itemSelect" required
+                            data-select-item aria-labelledby="itemLabel">
+                            <option value="" selected disabled hidden>Selecciona una opción</option>
+                            <option value="Pulsera">Pulsera</option>
+                            <option value="Anillo">Anillo</option>
+                            <option value="Collar">Collar</option>
+                            <option value="Aretes">Aretes</option>
+                        </select>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Introduzca un accesorio.</div>
+                    </div>
+
+                    <div class="col-md-6 quotation_form_div">
+                        <div class="d-flex flex-row">
+                            <label id="amountLabel">Cantidad</label>
+                            <div class="ms-auto">
+                                <input class="form-check-input" type="checkbox" value="" id="newAmountCheck">
+                                <label class="form-check-label" for="newAmountCheck">
+                                    Otra cantidad
+                                </label>
+                            </div>
+                        </div>
+                        <input class="quotation_input form-control none" disabled id="amountInput" type="number" min="1"
+                            required data-input-amount aria-labelledby="amountLabel">
+                        <select name="amountSelect" class="quotation_input form-control" id="amountSelect" required
+                            data-select-amount aria-labelledby="amountLabel">
+                            <option value="" selected disabled hidden>Selecciona una opción</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Introduzca un número válido.</div>
+                    </div>
+
+                    <div class="col-md-6 quotation_form_div">
+                        <div class="d-flex flex-row">
+                            <label id="priceLabel">Precio</label>
+                            <div class="ms-auto">
+                                <input class="form-check-input" type="checkbox" value="" id="newPriceCheck">
+                                <label class="form-check-label" for="newPriceCheck">
+                                    Otro precio
+                                </label>
+                            </div>
+                        </div>
+                        <input class="quotation_input form-control none" disabled id="priceInput" type="number" min="1"
+                            required data-input-price aria-labelledby="priceLabel">
+                        <select name="priceSelect" class="quotation_input form-control" id="priceSelect" required
+                            data-select-price aria-labelledby="priceLabel">
+                            <option value="" selected disabled hidden>Selecciona una opción</option>
+                            <option value="1000">1000</option>
+                            <option value="1500">1500</option>
+                            <option value="2000">2000</option>
+                            <option value="2500">2500</option>
+                        </select>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Introduzca un número válido.</div>
+                    </div>
+
+                    <div class="col-md-6 quotation_form_div">
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="" id="discountCheck">
+                            <label class="form-check-label" for="discountCheck">
+                                Agregar descuento
+                            </label>
+                        </div>
+                        <div id="discount_div" class="mt-3 none">
+                            <label for="discount">Descuento %</label>
+                            <input class="quotation_input form-control" disabled id="discount" type="number" min="1"
+                                max="100" required>
+                            <div class="valid-feedback">Se ve bien!</div>
+                            <div class="invalid-feedback">Introduzca un porcentaje válido.</div>
+                        </div>
+                    </div>
+                    <div class="quotation_btn quotation_form_div">
+                        <button class="btn fs-5 mt-3" id="submitBtn" type="submit">Agregar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="quotation-container purchase_section" id="purchase_section">
+                <table class="purchase_table" id="purchase_table">
+                    <thead>
+                        <tr>
+                            <th>Accesorio</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Descuento</th>
+                            <th>Subtotal</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody class="purchase_table_body" id="purchase_table_body"></tbody>
+                </table>
+                <div class="purchase_btn_box">
+                    <button class="btn fs-5 mt-3 purchase_btn generatePDF_btn" id="generatePDF_btn">
+                        Generar Cotización</button>
+                    <button class="btn fs-5 mt-3 purchase_btn restartBtn" id="restartBtn"
+                        onclick="restartFormAndDeleteRows()">Reiniciar</button>
                 </div>
-                <div class="quotation_btn quotation_form_div">
-                    <button class="btn fs-5 mt-3" id="submitBtn" type="submit">Agregar</button>
-                </div>
-            </form>
-        </section>
-        <section class="purchase_section" id="purchase_section">
-            <table class="purchase_table" id="purchase_table">
-                <thead>
-                    <tr>
-                        <th>Accesorio</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Descuento</th>
-                        <th>Subtotal</th>
-                        <th>Borrar</th>
-                    </tr>
-                </thead>
-                <tbody class="purchase_table_body" id="purchase_table_body"></tbody>
-            </table>
-            <div class="purchase_buttons">
-                <button class="btn fs-5 mt-3 generatePDF_btn" id="generatePDF_btn" onclick="generatePDF()">Generar
-                    Cotización</button>
-                <button class="btn fs-5 mt-3 restartBtn" id="restartBtn"
-                    onclick="restartFormAndDeleteRows()">Reiniciar</button>
+            </div>
+            <div class="info-container">
+                <form class="needs-validation" id="whatsappForm">
+                    <div class="info_form_div w-100">
+                        <label for="whatsappMessage">Editar Mensaje:</label>
+                        <textarea class="whatsappMessageText form-control" id="whatsappMessage"
+                            placeholder="Escribe tu mensaje aquí" rows="6"
+                            required>
+¡Hola [Nombre]! ¿Cómo estás?
+
+Gracias por tu interés en nuestros productos. A continuación, te enviamos la proforma.
+
+Esperamos que sea de tu agrado. ¡Quedamos a tu disposición para cualquier consulta!</textarea>
+                        <div class="valid-feedback">Se ve bien!</div>
+                        <div class="invalid-feedback">Introduzca un nombre válido.</div>
+                    </div>
+                    <div class="quotation_btn quotation_form_div">
+                        <button class="btn fs-5 mt-3" type="button" id="whatsappMessageBtn">Enviar a WhatsApp</button>
+                    </div>
+                </form>
             </div>
         </section>
     </main>

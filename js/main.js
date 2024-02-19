@@ -14,7 +14,14 @@ window.addEventListener('load', () => {
 const quotation_form = document.getElementById('quotation_form');
 const submitBtn = document.getElementById('submitBtn');
 
+const generatePDF_form = document.getElementById('generatePDF_form');
+const generatePDF_btn = document.getElementById('generatePDF_btn');
+const inputDate = document.getElementById('date');
+const employee = document.getElementById('employee');
+
 const client = document.getElementById('client');
+
+const phoneNum = document.getElementById('phoneNum');
 
 const inputItem = quotation_form.querySelector('[data-input-item]');
 const selectItem = quotation_form.querySelector('[data-select-item]');
@@ -56,6 +63,32 @@ submitBtn.addEventListener('click', (e) => {
 
 });
 
+generatePDF_btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation()
+    if (!generatePDF_form.checkValidity()) {
+        generatePDF_form.classList.add('was-validated');
+    } else {
+        generatePDF();
+        console.log('empleado', employee.value);
+        console.log('date', inputDate.value);
+
+        generatePDF_form.removeAttribute('class', 'was-validated');
+
+        // const purchaseDetails = {
+        //     item: selectItem.value || inputItem.value,
+        //     amount: parseFloat(selectAmount.value || inputAmount.value),
+        //     price: parseFloat(selectPrice.value || inputPrice.value),
+        //     discount: parseFloat(discount.value) || 0,
+        //     id: tokenId(),
+        // };
+
+        // addPurchase(purchaseDetails);
+        // purchaseReceipt(purchaseDetails);
+        // restartAllForm(false);
+    }
+})
+
 class Purchase {
     constructor(item, amount, price, discount, id) {
         this.item = item;
@@ -78,7 +111,7 @@ function restartAllForm(allInputs) {
     Inputs.forEach((input) => {
         if (input.type === 'checkbox') {
             input.checked = false;
-        } else if (!(allInputs === false && input.id === 'client')) {
+        } else if (!((allInputs === false && input.id === 'client') || (allInputs === false && input.id === 'phoneNum'))) {
             input.value = '';
         }
     });
@@ -284,6 +317,46 @@ function generatePDF() {
 
     // Guardar el PDF
     doc.save("documento.pdf");
+}
+
+
+/* 
+    Whatsapp Message
+*/
+
+const whatsappForm = document.getElementById('whatsappForm');
+const whatsappMessageBtn = document.getElementById('whatsappMessageBtn');
+
+whatsappMessageBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation()
+    if (!whatsappForm.checkValidity()) {
+        whatsappForm.classList.add('was-validated');
+    } else {
+        sendWhatsAppMessage();
+        console.log('whatsapp Message Btn');
+
+        whatsappForm.removeAttribute('class', 'was-validated');
+
+        // const purchaseDetails = {
+        //     item: selectItem.value || inputItem.value,
+        //     amount: parseFloat(selectAmount.value || inputAmount.value),
+        //     price: parseFloat(selectPrice.value || inputPrice.value),
+        //     discount: parseFloat(discount.value) || 0,
+        //     id: tokenId(),
+        // };
+
+        // addPurchase(purchaseDetails);
+        // purchaseReceipt(purchaseDetails);
+        // restartAllForm(false);
+    }
+})
+
+function sendWhatsAppMessage() {
+    let whatsappMessage = document.getElementById('whatsappMessage').value.replace('[Nombre]', client.value);
+    whatsappMessage = encodeURIComponent(whatsappMessage.replace(/%0A/g, '%0A%0A'));
+    const whatsappLink = 'https://wa.me/506' + phoneNum.value + '?text=' + whatsappMessage;
+    window.open(whatsappLink, '_blank');
 }
 
 

@@ -113,22 +113,53 @@ body {
     margin: 2rem;
 }
 
-main {
+.info-container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 0.7em var(--primary-color);
+    margin: 1rem;
+}
+
+.info-container form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.info_form_div {
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.info_input {
+    max-width: 600px;
+    background: rgba(20, 21, 22, 0.7);
+    border-color: var(--primary-color);
+    border-radius: 15px;
+    box-shadow: 0 0 0.7em var(--primary-color);
+    color: #fff;
+    margin: 0.5rem 0;
+    padding: 0.375rem 0.75rem;
+}
+
+.quotation-section {
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 25px;
+    padding: 0 25px 25px;
 }
 
-main section {
+.quotation-container {
     width: 600px;
     min-height: 500px;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 0 0.7em var(--primary-color);
-    margin: 0 16px;
+    margin: 1rem;
 }
 
 /* 
@@ -182,18 +213,14 @@ main section {
     flex-direction: column;
 }
 
-.purchase_table {
-    
-}
-
-.purchase_buttons {
+.purchase_btn_box {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: auto;
 }
 
-.purchase_buttons .btn {
+.purchase_btn {
     background: rgba(20, 21, 22, 0.7);
     border-radius: 15px;
     color: #fff;
@@ -236,4 +263,16 @@ main section {
     text-align: center;
     /* border-top: 1px solid #afafaf; */
     padding: 5px 10px;
+}
+
+/* Whatsapp Message */
+
+.whatsappMessageText {
+    background: rgba(20, 21, 22, 0.7);
+    border-color: var(--primary-color);
+    border-radius: 15px;
+    box-shadow: 0 0 0.7em var(--primary-color);
+    color: #fff;
+    margin: 0.5rem 0;
+    padding: 1rem;
 }
