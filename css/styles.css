@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
 :root {
-    --primary-color: #04BF8A;
+    --primary-color: red;
     --background-color: #141516;
+    --background-color-box: rgba(239, 230, 204, 0.4);
+    --border-color: #efe6cc;
     --primary-btn: #0897B4;
     --secondary-btn: #BF264F;
     --neon-color: #0897B4;
@@ -24,10 +26,8 @@ body {
     width: 100%;
     font-size: 16px;
     background-color: var(--background-color);
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-        url("https://images.unsplash.com/photo-1551970634-747846a548cb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-        url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), 
+        url("https://images.pexels.com/photos/14856414/pexels-photo-14856414.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -37,24 +37,6 @@ body {
 
 .none {
     display: none;
-}
-
-.neon-text {
-    color: #fff;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
-    animation: neon-glow 2s linear infinite;
-}
-
-@keyframes neon-glow {
-    0% {
-        text-shadow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color), 0 0 30px var(--neon-color); /* Initial glow effect */
-    }
-    50% {
-        text-shadow: 0 0 20px var(--neon-color), 0 0 30px var(--neon-color), 0 0 40px var(--neon-color); /* Increased glow effect */
-    }
-    100% {
-        text-shadow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color), 0 0 30px var(--neon-color); /* Return to initial glow */
-    }
 }
 
 /* 
@@ -111,14 +93,17 @@ body {
 .title {
     text-align: center;
     margin: 2rem;
+    font-size: 3.5rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 3px pink;
 }
 
 .info-container {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--background-color-box);
     padding: 10px;
+    border: solid 2px var(--border-color);
     border-radius: 15px;
-    box-shadow: 0 0 0.7em var(--primary-color);
     margin: 1rem;
 }
 
@@ -136,9 +121,8 @@ body {
 .info_input {
     max-width: 600px;
     background: rgba(20, 21, 22, 0.7);
-    border-color: var(--primary-color);
+    border: solid 2px var(--border-color);
     border-radius: 15px;
-    box-shadow: 0 0 0.7em var(--primary-color);
     color: #fff;
     margin: 0.5rem 0;
     padding: 0.375rem 0.75rem;
@@ -155,10 +139,10 @@ body {
 .quotation-container {
     width: 600px;
     min-height: 500px;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--background-color-box);
     padding: 25px;
+    border: solid 2px var(--border-color);
     border-radius: 15px;
-    box-shadow: 0 0 0.7em var(--primary-color);
     margin: 1rem;
 }
 
@@ -176,9 +160,8 @@ body {
 .quotation_input {
     max-width: 600px;
     background: rgba(20, 21, 22, 0.7);
-    border-color: var(--primary-color);
+    border: solid 2px var(--border-color);
     border-radius: 15px;
-    box-shadow: 0 0 0.7em var(--primary-color);
     color: #fff;
     margin: 0.5rem 0;
     padding: 0.375rem 0.75rem;
@@ -186,8 +169,7 @@ body {
 
 .quotation_btn .btn {
     background: rgba(20, 21, 22, 0.7);
-    border: 1px solid var(--primary-btn);
-    box-shadow: 0 0 0.7em var(--primary-btn);
+    border: solid 2px var(--primary-btn);
     border-radius: 15px;
     color: #fff;
 }
@@ -227,8 +209,7 @@ body {
 }
 
 .generatePDF_btn {
-    border: 1px solid var(--primary-btn);
-    box-shadow: 0 0 0.7em var(--primary-btn);
+    border: solid 2px var(--primary-btn);
 }
 
 .generatePDF_btn:hover {
@@ -240,8 +221,7 @@ body {
 }
 
 .restartBtn {
-    border: 1px solid var(--secondary-btn);
-    box-shadow: 0 0 0.7em var(--secondary-btn);
+    border: solid 2px var(--secondary-btn);
 }
 .restartBtn:hover {
     background: var(--secondary-btn);
@@ -251,17 +231,17 @@ body {
     background: var(--secondary-btn);
 }
 
+.purchase_table thead {
+    border-bottom: solid 2px var(--border-color);
+}
+
 .purchase_table th{
     text-align: center;
-    /* border-right: 1px solid #afafaf;
-    border-left: 1px solid #afafaf; */
-    border-bottom: 1px solid #afafaf;
     padding: 5px 10px;
 }
 
 .purchase_table td{
     text-align: center;
-    /* border-top: 1px solid #afafaf; */
     padding: 5px 10px;
 }
 
@@ -269,9 +249,8 @@ body {
 
 .whatsappMessageText {
     background: rgba(20, 21, 22, 0.7);
-    border-color: var(--primary-color);
+    border: solid 2px var(--border-color);
     border-radius: 15px;
-    box-shadow: 0 0 0.7em var(--primary-color);
     color: #fff;
     margin: 0.5rem 0;
     padding: 1rem;

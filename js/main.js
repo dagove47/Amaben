@@ -247,7 +247,7 @@ function generatePDF() {
 
     // Añade una imagen (asegúrate de tener la URL correcta de la imagen)
     const imageUrl = '../images/Amaben_Logo.jpg'; // Reemplaza '../images/Amaben_Logo.jpg' con la URL de tu imagen
-    doc.addImage(imageUrl, 'JPEG', 80, 20, 50, 30); // Ajusta las coordenadas y dimensiones según tus necesidades
+    doc.addImage(imageUrl, 'JPEG', 80, 20, 50, 25); // Ajusta las coordenadas y dimensiones según tus necesidades
 
     // Agrega el contenido al PDF con tamaños de fuente más pequeños
     doc.text("PROFORMA", 105, 70, textOptions);
