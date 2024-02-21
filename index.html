@@ -48,7 +48,7 @@
                         <div class="valid-feedback">Se ve bien!</div>
                         <div class="invalid-feedback">Introduzca un nombre válido.</div>
                     </div>
-                    <div class="col-md-6 info_form_div">
+                    <!-- <div class="col-md-6 info_form_div">
                         <label for="employee">Empleado</label>
                         <select name="employee" class="info_input form-control" id="employee" required data-select-item>
                             <option value="" selected disabled hidden>Seleccionar empleado</option>
@@ -62,7 +62,7 @@
                         </select>
                         <div class="valid-feedback">Se ve bien!</div>
                         <div class="invalid-feedback">Introduzca un nombre válido.</div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
             <div class="quotation-container">
@@ -72,13 +72,6 @@
                         <input class="quotation_input form-control" id="client" type="text" minlength="2" required>
                         <div class="valid-feedback">Se ve bien!</div>
                         <div class="invalid-feedback">Introduzca un nombre válido.</div>
-                    </div>
-                    <div class="col-md-6 quotation_form_div">
-                        <label for="phoneNum">Teléfono</label>
-                        <input class="quotation_input form-control" id="phoneNum" type="tel" pattern="[0-9]{8}"
-                            required>
-                        <div class="valid-feedback">Se ve bien!</div>
-                        <div class="invalid-feedback">Ingrese un número de teléfono válido de 8 dígitos.</div>
                     </div>
                     <div class="col-md-6 quotation_form_div">
                         <div class="d-flex flex-row">
@@ -237,6 +230,13 @@
             <div class="info-container">
                 <form class="needs-validation" id="whatsappForm">
                     <div class="info_form_div w-100">
+                        <div class="col-md-6 quotation_form_div">
+                            <label for="phoneNum">Teléfono</label>
+                            <input class="quotation_input form-control" id="phoneNum" type="tel" pattern="[0-9]{8}"
+                                required>
+                            <div class="valid-feedback">Se ve bien!</div>
+                            <div class="invalid-feedback">Ingrese un número de teléfono válido de 8 dígitos.</div>
+                        </div>
                         <label for="whatsappMessage">Editar Mensaje:</label>
                         <textarea class="whatsappMessageText form-control" id="whatsappMessage"
                             placeholder="Escribe tu mensaje aquí" rows="6" required>
@@ -268,36 +268,22 @@ Esperamos que sea de tu agrado. ¡Quedamos a tu disposición para cualquier cons
         </div>
         <div class="quotationImg-body">
             <h2>PROFORMA</h2>
-            <table>
+            <table id="quotationImg-table">
                 <thead>
                     <tr>
                         <th>Productos</th>
-                        <th>Precios</th>
                         <th>Cantidad</th>
+                        <th>Precios</th>
                         <th>Descuento</th>
                         <th>Subtotal</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Aretes</td>
-                        <td>10000</td>
-                        <td>5</td>
-                        <td>1000</td>
-                        <td>9000</td>
-                    </tr><tr>
-                        <td>Aretes</td>
-                        <td>10000</td>
-                        <td>5</td>
-                        <td>1000</td>
-                        <td>9000</td>
-                    </tr>
-                </tbody>
+                <tbody id="quotationImg-table-body"></tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" scope="row"></td>
                         <td>Total:</td>
-                        <td>9000</td>
+                        <td id="total"></td>
                     </tr>
                 </tfoot>
             </table>

@@ -39,7 +39,7 @@ const discountDiv = document.getElementById('discount_div');
 const discount = document.getElementById('discount');
 const discountCheck = document.getElementById('discountCheck');
 
-const allPurchases = [];
+let allPurchases = [];
 let clientName = '';
 
 submitBtn.addEventListener('click', (e) => {
@@ -100,7 +100,7 @@ class Purchase {
 }
 
 function addPurchase({ item, amount, price, discount, id }) {
-    const newPurchase = new Purchase(item, price, amount, discount, id);
+    const newPurchase = new Purchase(item, amount, price, discount, id);
     allPurchases.push(newPurchase);
 }
 
@@ -201,10 +201,24 @@ function purchaseReceipt({ item, amount, price, discount, id }) {
     iconCell.addEventListener('click', () => {
         if (confirm('¿Confirma que desea eliminar esta fila?')) {
             purchaseTableBody.removeChild(newRow); // Remove the row from the table
+            deleteObjectById(id);
         }
     });
 
     purchaseTableBody.appendChild(newRow);
+}
+
+function deleteObjectById(id) {
+    // Find index of object with given id
+    var index = allPurchases.findIndex(function (purchase) {
+        return purchase.id === id;
+    });
+
+    // If object with id is found, remove it from the array
+    if (index !== -1) {
+        allPurchases.splice(index, 1);
+        updateTable();
+    }
 }
 
 function addDiscount(amount, price, discount) {
@@ -324,19 +338,50 @@ function downloadPNG() {
     const quotationImgDate = document.getElementById('quotationImg-date');
     quotationImgDate.textContent = `Fecha: ${dateSelected.getDate()} / ${dateSelected.getMonth() + 1} / ${dateSelected.getFullYear()}`;
 
+    updateTable();
+
     // Convert content to canvas
     const canvas = document.querySelector('#canvas');
     html2canvas(document.querySelector('#quotationImg')).then((canvas) => {
-      // Get image data and create download link
-      const imgData = canvas.toDataURL('image/png');
-      const downloadLink = document.createElement('a');
-      downloadLink.href = imgData;
-      downloadLink.download = 'imagen.png';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
+        // Get image data and create download link
+        const imgData = canvas.toDataURL('image/png');
+        const downloadLink = document.createElement('a');
+        downloadLink.href = imgData;
+        downloadLink.download = 'imagen.png';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
     });
-  }
+}
+
+function updateTable() {
+    console.log(allPurchases);
+    var tableBody = document.getElementById('quotationImg-table-body');
+    var totalElement = document.getElementById('total');
+    
+    tableBody.textContent = '';
+    let subtotal = 0;
+    totalElement.textContent = '0';
+
+    // Loop through the allPurchases array and append rows to the table
+    for (var i = 0; i < allPurchases.length; i++) {
+        var purchase = allPurchases[i];
+        subtotal = (purchase.amount * purchase.price) - (purchase.amount * purchase.price * (purchase.discount / 100));
+
+        // Create a new row
+        var row = tableBody.insertRow();
+
+        // Insert cells with data
+        row.insertCell(0).textContent = purchase.item;
+        row.insertCell(1).textContent = purchase.amount;
+        row.insertCell(2).textContent = purchase.price;
+        row.insertCell(3).textContent = (purchase.amount * purchase.price * (purchase.discount / 100));
+        row.insertCell(4).textContent = subtotal;
+
+        // Add subtotal to the total
+        totalElement.textContent = (parseFloat(totalElement.textContent) || 0) + subtotal;
+    }
+}
 
 /* 
     Whatsapp Message
