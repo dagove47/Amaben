@@ -69,7 +69,7 @@ generatePDF_btn.addEventListener('click', (e) => {
     if (!generatePDF_form.checkValidity()) {
         generatePDF_form.classList.add('was-validated');
     } else {
-        generatePDF();
+        downloadPNG();
         console.log('empleado', employee.value);
         console.log('date', inputDate.value);
 
@@ -319,6 +319,24 @@ function generatePDF() {
     doc.save("documento.pdf");
 }
 
+function downloadPNG() {
+    const dateSelected = new Date(inputDate.value);
+    const quotationImgDate = document.getElementById('quotationImg-date');
+    quotationImgDate.textContent = `Fecha: ${dateSelected.getDate()} / ${dateSelected.getMonth() + 1} / ${dateSelected.getFullYear()}`;
+
+    // Convert content to canvas
+    const canvas = document.querySelector('#canvas');
+    html2canvas(document.querySelector('#quotationImg')).then((canvas) => {
+      // Get image data and create download link
+      const imgData = canvas.toDataURL('image/png');
+      const downloadLink = document.createElement('a');
+      downloadLink.href = imgData;
+      downloadLink.download = 'imagen.png';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    });
+  }
 
 /* 
     Whatsapp Message

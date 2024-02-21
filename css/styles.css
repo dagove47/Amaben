@@ -255,3 +255,77 @@ body {
     margin: 0.5rem 0;
     padding: 1rem;
 }
+
+
+
+.quotationImg {
+    display: flex;
+    flex-direction: column;
+    width: 21.59cm; /* Set content width to 21.59 cm */
+    height: 27.94cm; /* Set content height to 27.94 cm */
+    background-color: #fff;
+    color: #000;
+}
+
+.quotationImg-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.quotationImg-header > span {
+    text-align: end;
+    margin: 2rem;
+}
+
+.quotationImg-logo{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.quotationImg-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.quotationImg-body > h2 {
+    text-align: center;
+    margin: 1rem 0 2rem;
+}
+
+.quotationImg-body thead {
+    border-bottom: 1px solid rgb(160 160 160);
+}
+
+.quotationImg-body thead th {
+    padding-bottom: 0.5rem;
+}
+
+.quotationImg-body tbody td{
+    padding: 0.5rem 0;
+}
+
+.quotationImg-body tfoot {
+    border-top: 1px solid rgb(160 160 160);
+}
+  
+.quotationImg-body tfoot td {
+    padding-top: 1rem;
+    font-weight: bold;
+}
+
+.quotationImg-footer {
+    text-align: center;
+    margin-top: auto;
+}
+
+.social-media {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 3rem 0;
+}
+
