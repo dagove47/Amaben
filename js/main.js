@@ -358,10 +358,13 @@ function updateTable() {
     console.log(allPurchases);
     var tableBody = document.getElementById('quotationImg-table-body');
     var totalElement = document.getElementById('total');
+    let nombreCliente = document.getElementById('nombre-cliente');
     
     tableBody.textContent = '';
     let subtotal = 0;
     totalElement.textContent = '0';
+
+    nombreCliente.textContent = client.value;
 
     // Loop through the allPurchases array and append rows to the table
     for (var i = 0; i < allPurchases.length; i++) {
