@@ -17,7 +17,7 @@ const submitBtn = document.getElementById('submitBtn');
 const generatePDF_form = document.getElementById('generatePDF_form');
 const generatePDF_btn = document.getElementById('generatePDF_btn');
 const inputDate = document.getElementById('date');
-const employee = document.getElementById('employee');
+// const employee = document.getElementById('employee');
 
 const client = document.getElementById('client');
 
@@ -70,22 +70,7 @@ generatePDF_btn.addEventListener('click', (e) => {
         generatePDF_form.classList.add('was-validated');
     } else {
         downloadPNG();
-        console.log('empleado', employee.value);
-        console.log('date', inputDate.value);
-
         generatePDF_form.removeAttribute('class', 'was-validated');
-
-        // const purchaseDetails = {
-        //     item: selectItem.value || inputItem.value,
-        //     amount: parseFloat(selectAmount.value || inputAmount.value),
-        //     price: parseFloat(selectPrice.value || inputPrice.value),
-        //     discount: parseFloat(discount.value) || 0,
-        //     id: tokenId(),
-        // };
-
-        // addPurchase(purchaseDetails);
-        // purchaseReceipt(purchaseDetails);
-        // restartAllForm(false);
     }
 })
 
@@ -334,9 +319,9 @@ function generatePDF() {
 }
 
 function downloadPNG() {
-    const dateSelected = new Date(inputDate.value);
+    const dateSelected = inputDate.value.split('-');
     const quotationImgDate = document.getElementById('quotationImg-date');
-    quotationImgDate.textContent = `Fecha: ${dateSelected.getDate()} / ${dateSelected.getMonth() + 1} / ${dateSelected.getFullYear()}`;
+    quotationImgDate.textContent = `Fecha: ${dateSelected[2]} / ${dateSelected[1]} / ${dateSelected[0]}`;
 
     updateTable();
 
@@ -355,7 +340,6 @@ function downloadPNG() {
 }
 
 function updateTable() {
-    console.log(allPurchases);
     var tableBody = document.getElementById('quotationImg-table-body');
     var totalElement = document.getElementById('total');
     let nombreCliente = document.getElementById('nombre-cliente');
@@ -400,21 +384,7 @@ whatsappMessageBtn.addEventListener('click', (e) => {
         whatsappForm.classList.add('was-validated');
     } else {
         sendWhatsAppMessage();
-        console.log('whatsapp Message Btn');
-
         whatsappForm.removeAttribute('class', 'was-validated');
-
-        // const purchaseDetails = {
-        //     item: selectItem.value || inputItem.value,
-        //     amount: parseFloat(selectAmount.value || inputAmount.value),
-        //     price: parseFloat(selectPrice.value || inputPrice.value),
-        //     discount: parseFloat(discount.value) || 0,
-        //     id: tokenId(),
-        // };
-
-        // addPurchase(purchaseDetails);
-        // purchaseReceipt(purchaseDetails);
-        // restartAllForm(false);
     }
 })
 

@@ -99,12 +99,21 @@ body {
 }
 
 .info-container {
-    width: 100%;
     background-color: var(--background-color-box);
     padding: 10px;
     border: solid 2px var(--border-color);
     border-radius: 15px;
     margin: 1rem;
+}
+
+.date-container .info-container {
+    width: 600px;
+}
+
+.date-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .info-container form {
@@ -114,6 +123,7 @@ body {
 }
 
 .info_form_div {
+    width: 100%;
     flex-direction: column;
     padding: 1rem;
 }
