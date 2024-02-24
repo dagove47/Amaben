@@ -319,6 +319,9 @@ function generatePDF() {
 }
 
 function downloadPNG() {
+    const quotationImgContainer = document.getElementById('quotationImgContainer');
+    quotationImgContainer.classList.remove('none');
+
     const dateSelected = inputDate.value.split('-');
     const quotationImgDate = document.getElementById('quotationImg-date');
     quotationImgDate.textContent = `Fecha: ${dateSelected[2]} / ${dateSelected[1]} / ${dateSelected[0]}`;
@@ -332,11 +335,12 @@ function downloadPNG() {
         const imgData = canvas.toDataURL('image/png');
         const downloadLink = document.createElement('a');
         downloadLink.href = imgData;
-        downloadLink.download = 'imagen.png';
+        downloadLink.download = `${client.value.replace(/\s/g, '_')}_${inputDate.value}.png`;
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
     });
+    quotationImgContainer.classList.add('none');
 }
 
 function updateTable() {

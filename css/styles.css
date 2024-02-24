@@ -49,6 +49,7 @@ body {
     display: flex;
     position: fixed;
     z-index: 10000;
+    top: 0;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -106,8 +107,13 @@ body {
     margin: 1rem;
 }
 
-.date-container .info-container {
+.date-form {
     width: 600px;
+    background-color: var(--background-color-box);
+    padding: 10px;
+    border: solid 2px var(--border-color);
+    border-radius: 15px;
+    margin: 1rem;
 }
 
 .date-container {
