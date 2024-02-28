@@ -39,8 +39,11 @@ const discountDiv = document.getElementById('discount_div');
 const discount = document.getElementById('discount');
 const discountCheck = document.getElementById('discountCheck');
 
+const totalDiscountDiv = document.getElementById('total_discount_div');
+const totalDiscount = document.getElementById('totalDiscount');
+const totalDiscountCheck = document.getElementById('totalDiscountCheck');
+
 let allPurchases = [];
-let clientName = '';
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -104,7 +107,7 @@ function restartAllForm(allInputs) {
     toggleOption(selectItem, inputItem);
     toggleOption(selectAmount, inputAmount);
     toggleOption(selectPrice, inputPrice);
-    removeInputDiscount();
+    removeInputDiscount(discountDiv, discount);
 }
 
 newItemCheck.addEventListener('change', function () {
@@ -120,7 +123,11 @@ newPriceCheck.addEventListener('change', function () {
 });
 
 discountCheck.addEventListener('change', function () {
-    this.checked ? addInputDiscount() : removeInputDiscount();
+    this.checked ? addInputDiscount(discountDiv, discount) : removeInputDiscount(discountDiv, discount);
+})
+
+totalDiscountCheck.addEventListener('change', function () {
+    this.checked ? addInputDiscount(totalDiscountDiv, totalDiscount) : removeInputDiscount(totalDiscountDiv, totalDiscount);
 })
 
 function toggleOption(insertOpt, removeOpt) {
@@ -131,15 +138,15 @@ function toggleOption(insertOpt, removeOpt) {
     insertOpt.disabled = false;
 }
 
-function addInputDiscount() {
-    discountDiv.classList.remove('none');
-    discount.disabled = false;
+function addInputDiscount(inputDiv, input) {
+    inputDiv.classList.remove('none');
+    input.disabled = false;
 }
 
-function removeInputDiscount() {
-    discount.value = '';
-    discountDiv.classList.add('none');
-    discount.disabled = true;
+function removeInputDiscount(inputDiv, input) {
+    input.value = '';
+    inputDiv.classList.add('none');
+    input.disabled = true;
 }
 
 /* 
@@ -150,8 +157,8 @@ const purchaseTableBody = document.getElementById('purchase_table_body');
 
 function purchaseReceipt({ item, amount, price, discount, id }) {
 
-    const totalDiscount = addDiscount(amount, price, discount);
-    const subTotal = (amount * price) - totalDiscount;
+    const itemDiscount = addDiscount(amount, price, discount);
+    const subTotal = (amount * price) - itemDiscount;
 
     // Create a new table row element as a DOM node
     const newRow = document.createElement('tr');
@@ -170,7 +177,7 @@ function purchaseReceipt({ item, amount, price, discount, id }) {
     newRow.appendChild(priceCell);
 
     const discountCell = document.createElement('td');
-    discountCell.textContent = totalDiscount.toFixed(2);
+    discountCell.textContent = itemDiscount.toFixed(2);
     newRow.appendChild(discountCell);
 
     const subTotalCell = document.createElement('td');
@@ -208,8 +215,8 @@ function deleteObjectById(id) {
 
 function addDiscount(amount, price, discount) {
     const percentage = discount / 100;
-    const totalDiscount = amount * price * percentage;
-    return totalDiscount;
+    const amountDiscount = amount * price * percentage;
+    return amountDiscount;
 }
 
 function deleteAllRows() {
@@ -219,8 +226,11 @@ function deleteAllRows() {
 }
 
 function restartFormAndDeleteRows() {
+    totalDiscountCheck.checked = false;
+    removeInputDiscount(totalDiscountDiv, totalDiscount);
     restartAllForm(true);
     deleteAllRows();
+    allPurchases.length = 0;
 }
 
 
@@ -345,19 +355,21 @@ function downloadPNG() {
 
 function updateTable() {
     var tableBody = document.getElementById('quotationImg-table-body');
+    var subtotalElement = document.getElementById('subtotal');
     var totalElement = document.getElementById('total');
+    var discountElement = document.getElementById('finalDiscount');
     let nombreCliente = document.getElementById('nombre-cliente');
     
     tableBody.textContent = '';
+    let sumPurchase = 0;
     let subtotal = 0;
-    totalElement.textContent = '0';
-
-    nombreCliente.textContent = client.value;
+    let total = 0;
+    let finalDiscount = 0;
 
     // Loop through the allPurchases array and append rows to the table
     for (var i = 0; i < allPurchases.length; i++) {
         var purchase = allPurchases[i];
-        subtotal = (purchase.amount * purchase.price) - (purchase.amount * purchase.price * (purchase.discount / 100));
+        sumPurchase = (purchase.amount * purchase.price) - (purchase.amount * purchase.price * (purchase.discount / 100));
 
         // Create a new row
         var row = tableBody.insertRow();
@@ -367,11 +379,19 @@ function updateTable() {
         row.insertCell(1).textContent = purchase.amount;
         row.insertCell(2).textContent = purchase.price;
         row.insertCell(3).textContent = (purchase.amount * purchase.price * (purchase.discount / 100));
-        row.insertCell(4).textContent = subtotal;
+        row.insertCell(4).textContent = sumPurchase;
 
         // Add subtotal to the total
-        totalElement.textContent = (parseFloat(totalElement.textContent) || 0) + subtotal;
+        subtotal += sumPurchase;
     }
+
+    finalDiscount = (subtotal * (parseFloat(totalDiscount.value || 0) / 100));
+    total = subtotal - finalDiscount;
+
+    nombreCliente.textContent = client.value;
+    discountElement.textContent = finalDiscount;
+    subtotalElement.textContent = subtotal;
+    totalElement.textContent = total;
 }
 
 /* 

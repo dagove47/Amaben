@@ -278,7 +278,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 21.59cm; /* Set content width to 21.59 cm */
-    height: 27.94cm; /* Set content height to 27.94 cm */
+    min-height: 27.94cm; /* Set content height to 27.94 cm */
     background-color: #fff;
     color: #000;
 }
